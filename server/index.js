@@ -4,6 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 
 const control = require('./controller')
+const db = require('./models')
 
 const app = express()
 
@@ -13,8 +14,9 @@ app.use(express.urlencoded({
 }))
 app.use(bodyParser.json())
 
-app.get('/', (req, res,next) => {
-    next(Error('just a TEST'))
+app.get('/', (req, res, next) => {
+    // next(Error('just a TEST'))
+    res.send('hello')
 })
 
 const port = process.env.PORT || 4000
