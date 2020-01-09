@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const validator = require('validator')
 
 const db = require('../models')
 
@@ -8,12 +9,22 @@ const userSchema = new mongoose.Schema({
     userName: {
         type: String,
         unique: true,
-        required: true
+        required: true,
+        validate(value){
+            if(validator.isEmpty(value)){
+                throw new Error('Provide userName')
+            }   
+        }
     },
     password: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        validate(value){
+            if(validator.isEmpty(value)){
+                throw new Error('Provide password')
+            }
+        }
     },
     createdAt: {
         type: Date,
@@ -29,34 +40,68 @@ userSchema.virtual('polls', {
     timestamps: true
 })
 
-userSchema.pre('save',async function(next){
-    try{
+userSchema.pre('save', async function (next) {
+    try {
         const user = this
-        if(user.isModified('password')){
+        if (!user.isModified('password')) {
             return next()
         }
-        const hashed = await bcrypt.hash(user.password,10)
+        const hashed = await bcrypt.hash(user.password, 10)
         user.password = hashed
+        // console.log(user);
+
         return next()
-    }
-    catch(err){
+    } catch (err) {
         return next(err)
     }
 })
 
-userSchema.method.generateToken = async function(){
-    try{
+userSchema.methods.generateToken = async function () {
+    try {
         const user = this
-        const {_id,userName} = user
+        const {
+            _id,
+            userName
+        } = user
 
-        let payload = {_id,userName}
-        const token = jwt.sign(payload,process.env.SECRET_KEY,{algorithm:'HS512',expiresIn:3600})
+        let payload = {
+            _id,
+            userName
+        }
+        const token = jwt.sign(payload, process.env.SECRET_KEY, {
+            algorithm: 'HS512',
+            expiresIn: 3600
+        })
 
         return token
-    }catch(err){
-        console.log(err);
+    } catch (err) {
+        // console.log(err);
         return next(Error('No token generated'))
     }
 }
 
-module.exports = User =  mongoose.model('users', userSchema)
+userSchema.statics.findByCredentials = async function ({userName,password},next){
+    try{
+        // const user = this
+
+        const user = await db.User.findOne({userName})        
+
+        if(!user){
+            throw new Error('No user exists')
+        }
+
+        const isValid = await bcrypt.compare(password,user.password)
+        // console.log(isValid);
+        
+        if(!isValid){
+            throw new Error('Password\'s incorrect')
+        }
+
+        return user
+    }catch(err){
+        return next(err)
+        
+    }
+}
+
+module.exports = User = mongoose.model('users', userSchema)

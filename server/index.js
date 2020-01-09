@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 
 const control = require('./controller')
 const db = require('./models')
+const routes = require('./routes')
 
 const app = express()
 
@@ -13,6 +14,8 @@ app.use(express.urlencoded({
     extended: true
 }))
 app.use(bodyParser.json())
+//routes middleware
+app.use('/api/auth',routes.auth)
 
 app.get('/', (req, res, next) => {
     // next(Error('just a TEST'))
