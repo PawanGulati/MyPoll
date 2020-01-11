@@ -24,6 +24,6 @@ const pollSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'users'
     }]
-})
+},{ usePushEach: true })
 
 module.exports = Poll =  mongoose.model('polls',pollSchema)
