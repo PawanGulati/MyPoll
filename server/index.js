@@ -10,12 +10,13 @@ const routes = require('./routes')
 const app = express()
 
 //middleware
-app.use(express.urlencoded({
-    extended: true
+app.use(bodyParser.urlencoded({
+    extended: false
 }))
 app.use(bodyParser.json())
 //routes middleware
 app.use('/api/auth',routes.auth)
+app.use('/api/polls',routes.polls)
 
 app.get('/', (req, res, next) => {
     // next(Error('just a TEST'))
