@@ -8,4 +8,7 @@ router.route('/')
     .get(control.showPolls)
     .post(auth, control.createPolls)
 
+router.route('/user')
+    .get(auth , control.userPolls)    
+
 module.exports = router

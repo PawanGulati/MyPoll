@@ -41,3 +41,18 @@ exports.createPolls = async(req,res,next)=>{
         next(err)
     }
 }
+
+exports.userPolls = async(req,res,next)=>{
+    try{
+        const {_id} = req.user
+        const user = await db.User.findById(_id).populate('polls')
+        if(user.polls.length === 0){
+            throw new Error('No Polls created')
+        }
+
+        res.status(200).json(polls)
+        next()
+    }catch(err){
+        next(err)
+    }
+}
