@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const validator = require('validator')
 
 const db = require('../models')
 
@@ -9,36 +8,32 @@ const userSchema = new mongoose.Schema({
     userName: {
         type: String,
         unique: true,
-        required: true,
-        validate(value){
-            if(validator.isEmpty(value)){
-                throw new Error('Provide userName')
-            }   
-        }
+        trim:true,
+        required: 'Enter your userName',
     },
     password: {
         type: String,
-        required: true,
+        required: "Enter your password",
         trim: true,
-        validate(value){
-            if(validator.isEmpty(value)){
-                throw new Error('Provide password')
-            }
-        }
     },
     createdAt: {
         type: Date,
         default: Date.now
     },
-})
+    polls:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: 'polls'
+    }]
+},{ usePushEach: true })
 
-userSchema.virtual('polls', {
-    ref: 'polls',
-    localField: '_id',
-    foreignField: 'owner'
-}, {
-    timestamps: true
-})
+// userSchema.virtual('polls', {
+//     type:mongoose.Schema.Types.ObjectId,
+//     ref: 'polls',
+//     localField: '_id',
+//     foreignField: 'owner'
+// }, {
+//     timestamps: true
+// })
 
 userSchema.pre('save', async function (next) {
     try {
