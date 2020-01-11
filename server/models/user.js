@@ -43,7 +43,6 @@ userSchema.pre('save', async function (next) {
         }
         const hashed = await bcrypt.hash(user.password, 10)
         user.password = hashed
-        // console.log(user);
 
         return next()
     } catch (err) {
@@ -70,15 +69,12 @@ userSchema.methods.generateToken = async function () {
 
         return token
     } catch (err) {
-        // console.log(err);
         return next(Error('No token generated'))
     }
 }
 
 userSchema.statics.findByCredentials = async function ({userName,password},next){
     try{
-        // const user = this
-
         const user = await db.User.findOne({userName})        
 
         if(!user){
@@ -86,7 +82,6 @@ userSchema.statics.findByCredentials = async function ({userName,password},next)
         }
 
         const isValid = await bcrypt.compare(password,user.password)
-        // console.log(isValid);
         
         if(!isValid){
             throw new Error('Password\'s incorrect')
