@@ -3,7 +3,7 @@ import Axios from "axios";
 // Axios calling function
 export const call = async(method,path,data) =>{
     try {
-        const response = await Axios[method](`/${path}`,data)
+        const response = await Axios[method](`http://localhost:4000/${path}`,data)
         return response.data
     } catch (err) {
         console.log(err);
@@ -18,3 +18,5 @@ export const setToken = (token)=>{
         delete Axios.defaults.headers.common['Authorization']
     }
 }
+
+export default {call,setToken}
