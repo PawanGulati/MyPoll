@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import ToolBar from '../../components/ToolBar/Toolbar'
 
 export default class Layout extends Component {
     render() {
         return (
             <>
-                <header>header</header>
+                <ToolBar/>
                 {this.props.children}
             </>
         )

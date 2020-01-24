@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
-import './App.css';
-import Layout from './containers/Layout/Layout';
+import React, { Component } from "react";
+import "./App.css";
+import Layout from "./containers/Layout/Layout";
+
+import AuthPage from "./Pages/AuthPage/AuthPage";
 export default class App extends Component {
   render() {
     return (
       <div className="App">
         <Layout>
-          <h1>App works!!</h1>
+          <AuthPage/>
         </Layout>
       </div>
     );
