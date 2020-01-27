@@ -8,9 +8,13 @@ import * as serviceWorker from './serviceWorker';
 import {Provider} from 'react-redux'
 import store from './store'
 
-const app = (<Provider store={store}>
-                <App />
-            </Provider>)
+import {BrowserRouter} from 'react-router-dom'
+
+const app = (<BrowserRouter>
+                <Provider store={store}>
+                    <App />
+                </Provider>
+            </BrowserRouter> )
 
 ReactDOM.render(app, document.getElementById('root'));
 

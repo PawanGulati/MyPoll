@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+
 import "./App.css";
 import Layout from "./containers/Layout/Layout";
+import {Route,Switch} from 'react-router-dom'
 
 import AuthPage from "./Pages/AuthPage/AuthPage";
 export default class App extends Component {
@@ -8,7 +10,11 @@ export default class App extends Component {
     return (
       <div className="App">
         <Layout>
-          <AuthPage/>
+          <Switch>
+            <Route path="/login" exact render={(props)=><AuthPage authType="login" {...props}/>}/>
+            <Route path="/register" exact render={(props)=><AuthPage authType="register" {...props}/>}/>
+            <Route path="/polls" exact render={()=><h1>Polls r here</h1>}/>
+          </Switch>
         </Layout>
       </div>
     );
