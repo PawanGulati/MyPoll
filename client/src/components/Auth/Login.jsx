@@ -6,6 +6,7 @@ import { Container, Button, Typography, Divider } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LockIcon from '@material-ui/icons/Lock';
 
+
 const useStyles = makeStyles(theme => ({
   root: {
     '& > *': {
@@ -14,7 +15,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Login(props) {
+
+export default props => {
   const classes = useStyles();
 
   return (
@@ -25,9 +27,9 @@ export default function Login(props) {
         </header>    
         <Divider style={{margin:"12px"}} />
         <form className={classes.root} noValidate autoComplete="off">
-            <Input placeholder="UserName" fullWidth inputProps={{ 'aria-label': 'description' }} style={{marginBottom:'26px'}}/>
-            <Input placeholder="Password" fullWidth inputProps={{ 'aria-label': 'description' }} style={{marginBottom:'26px'}}/>
-            <Button fullWidth variant="contained" color="primary" className={classes.button} startIcon={<ExitToAppIcon/>}>
+            <Input name="userName" onChange={props.inputChangeHandler} placeholder="UserName" fullWidth inputProps={{ 'aria-label': 'description' }} style={{marginBottom:'26px'}}/>
+            <Input name="password" onChange={props.inputChangeHandler} placeholder="Password" fullWidth inputProps={{ 'aria-label': 'description' }} style={{marginBottom:'26px'}}/>
+            <Button onClick={(e)=>props.submitHandler(e)} fullWidth variant="contained" color="primary" className={classes.button} startIcon={<ExitToAppIcon/>}>
                 Login
             </Button>
         </form>

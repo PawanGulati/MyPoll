@@ -25,10 +25,10 @@ export default function Register(props) {
         </header>    
         <Divider style={{margin:"12px"}} />
         <form className={classes.root} noValidate autoComplete="off">
-            <Input placeholder="UserName" fullWidth inputProps={{ 'aria-label': 'description' }} style={{marginBottom:'26px'}}/>
-            <Input placeholder="Password" fullWidth inputProps={{ 'aria-label': 'description' }} style={{marginBottom:'26px'}}/>
-            <Input placeholder="Conform Password" fullWidth inputProps={{ 'aria-label': 'description'}} style={{marginBottom:'26px'}} />
-            <Button fullWidth variant="contained" color="secondary" className={classes.button} startIcon={<ExitToAppIcon/>}>
+            <Input name="userName" onChange={props.inputChangeHandler} placeholder="UserName" fullWidth inputProps={{ 'aria-label': 'description' }} style={{marginBottom:'26px'}}/>
+            <Input name="password" onChange={props.inputChangeHandler} placeholder="Password" fullWidth inputProps={{ 'aria-label': 'description' }} style={{marginBottom:'26px'}}/>
+            <Input name="cnfrmPassword" onChange={props.inputChangeHandler} placeholder="Conform Password" fullWidth inputProps={{ 'aria-label': 'description'}} style={{marginBottom:'26px'}} />
+            <Button onClick={(e)=>props.submitHandler(e)} fullWidth variant="contained" color="secondary" className={classes.button} startIcon={<ExitToAppIcon/>}>
                 Register
             </Button>
         </form>
