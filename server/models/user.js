@@ -46,7 +46,7 @@ userSchema.pre('save', async function (next) {
 
         return next()
     } catch (err) {
-        return next(err)
+        return next({ status: 400, message: err.message })
     }
 })
 
@@ -64,7 +64,7 @@ userSchema.methods.generateToken = async function () {
         }
         const token = jwt.sign(payload, process.env.SECRET_KEY, {
             algorithm: 'HS512',
-            expiresIn: 3600
+            expiresIn: 3600*24 //1 DAY
         })
 
         return token
@@ -89,8 +89,8 @@ userSchema.statics.findByCredentials = async function ({userName,password},next)
 
         return user
     }catch(err){
-        return next(err)
-        
+        return next({ status: 400, message: err.message })
+
     }
 }
 

@@ -17,7 +17,7 @@ exports.register = async(req,res,next)=>{
         next()
     }catch(err){
         if(err.code === 11000) next(Error('Already Exists!!'))
-        next(err)
+        next({ status: 400, message: err.message })
     }
 }
 
@@ -40,6 +40,6 @@ exports.login = async(req,res,next)=>{
 
         next()
     }catch(err){
-        next(err)
+        next({ status: 400, message: err.message })
     }
 }

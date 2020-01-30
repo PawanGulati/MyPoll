@@ -7,7 +7,7 @@ exports.showPolls = async(req,res,next)=>{
         res.json(polls)
         next()
     } catch (err) {
-        next(err)
+        next({ status: 400, message: err.message })
     }
 }
 
@@ -36,7 +36,7 @@ exports.createPolls = async(req,res,next)=>{
         
         next()
     } catch (err) {
-        next(err)
+        next({ status: 400, message: err.message })
     }
 }
 
@@ -51,7 +51,7 @@ exports.userPolls = async(req,res,next)=>{
         res.status(200).json(polls)
         next()
     }catch(err){
-        next(err)
+        next({ status: 400, message: err.message })
     }
 }
 
@@ -68,7 +68,7 @@ exports.showPoll = async(req,res,next) =>{
 
         next()
     } catch (err) {
-        next(err)
+        next({ status: 400, message: err.message })
     }
 }
 
@@ -109,7 +109,7 @@ exports.vote = async(req,res,next) =>{
         }
         next()
     }catch(err){
-        next(err)
+        next({ status: 400, message: err.message })
     }
 }
 
@@ -130,6 +130,6 @@ exports.DeletePoll = async(req,res,next)=>{
         res.status(200).json(poll)
         next()
     }catch(err){
-        next(err)
+        next({ status: 400, message: err.message })
     }
 }

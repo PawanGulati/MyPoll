@@ -1,22 +1,24 @@
 import Axios from "axios";
 
 // Axios calling function
-export const call = async(method,path,data) =>{
-    try {
-        const response = await Axios[method](`http://localhost:4000/${path}`,data)
+export const call = async (method, path, data) => {
+    
+        const response = await Axios[method](`http://localhost:4000/api/${path}`, data)
+        // console.log(response.data);
+
         return response.data
-    } catch (err) {
-        console.log(err);
-    }
 }
 
 //Axios setHeader function
-export const setToken = (token)=>{
-    if(token){
+export const setToken = (token) => {
+    if (token) {
         Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-    }else{
+    } else {
         delete Axios.defaults.headers.common['Authorization']
     }
 }
 
-export default {call,setToken}
+export default {
+    call,
+    setToken
+}
