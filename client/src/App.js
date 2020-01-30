@@ -5,6 +5,22 @@ import Layout from "./containers/Layout/Layout";
 import {Route,Switch} from 'react-router-dom'
 
 import AuthPage from "./Pages/AuthPage/AuthPage";
+
+import decode from 'jwt-decode'
+
+import store from './store'
+import { setToken } from "./services/api/api";
+import { setCurUser,addError } from "./store/actions";
+
+if(localStorage.jwtToken){
+  setToken(localStorage.jwtToken)
+  try {
+    store.dispatch(setCurUser(decode(localStorage.jwtToken)))
+  } catch (error) {
+    store.dispatch(setCurUser({}))
+    store.dispatch(addError(error))
+  }
+}
 export default class App extends Component {
   render() {
     return (
