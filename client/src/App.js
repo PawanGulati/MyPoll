@@ -11,9 +11,10 @@ export default class App extends Component {
       <div className="App">
         <Layout>
           <Switch>
-            <Route path="/login" exact render={(props)=><AuthPage authType="login" {...props}/>}/>
-            <Route path="/register" exact render={(props)=><AuthPage authType="register" {...props}/>}/>
-            <Route path="/polls" exact render={()=><h1>Polls r here</h1>}/>
+            <Route path="/auth" exact render={(props)=><AuthPage {...props}/>}/>   
+            <Route path="/polls" exact render={()=><h1>Polls r here</h1>}/>   
+            {/* <Route path="/login" exact render={(props)=><AuthPage authType="login" {...props}/>}/>
+            <Route path="/register" exact render={(props)=><AuthPage authType="register" {...props}/>}/>*/}
           </Switch>
         </Layout>
       </div>
