@@ -5,22 +5,38 @@ import Input from '@material-ui/core/Input';
 import { Container, Button, Typography, Divider } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LockIcon from '@material-ui/icons/Lock';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const useStyles = makeStyles(theme => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
     },
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
   },
 }));
-
 
 export default props => {
   const classes = useStyles();
 
+  const error = props.error && (
+    <Snackbar open={props.openErr} autoHideDuration={3000} onClose={props.closeErr}>
+      <Alert onClose={props.closeErr} severity="error">
+        {props.error}
+      </Alert>
+    </Snackbar>
+  )
+
   return (
-    <Container maxWidth="sm">  
+    <Container maxWidth="sm">
+        {error}  
         <header style={{display:'flex',justifyContent:'space-between'}}>
             <Typography variant="h4" >SIGN IN</Typography> 
             <LockIcon fontSize="large"/>
