@@ -11,6 +11,7 @@ import decode from 'jwt-decode'
 import store from './store'
 import { setToken } from "./services/api/api";
 import { setCurUser,addError } from "./store/actions";
+import HomePage from "./Pages/HomePage/HomePage";
 
 if(localStorage.jwtToken){
   setToken(localStorage.jwtToken)
@@ -28,7 +29,7 @@ export default class App extends Component {
         <Layout>
           <Switch>
             <Route path="/auth" exact render={(props)=><AuthPage {...props}/>}/>   
-            <Route path="/polls" exact render={()=><h1>Polls r here</h1>}/>   
+            <Route path="/" exact render={props => <HomePage {...props} />}/>   
             {/* <Route path="/login" exact render={(props)=><AuthPage authType="login" {...props}/>}/>
             <Route path="/register" exact render={(props)=><AuthPage authType="register" {...props}/>}/>*/}
           </Switch>

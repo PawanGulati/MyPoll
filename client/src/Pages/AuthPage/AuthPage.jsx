@@ -65,7 +65,7 @@ export default connect(mapStateToProps,mapDispatchToProps)(class extends Compone
     return (
       <div className={classes.root} style={{height:'100%'}}>
 
-        {this.props.isAuth?<Redirect to='/polls'/>:null}
+        {this.props.isAuth?<Redirect to='/'/>:null}
 
         <Grid container spacing={3} style={{height:'100%'}}>
           <Grid item xs={12} sm={6} style={{height:'100%'}}>
