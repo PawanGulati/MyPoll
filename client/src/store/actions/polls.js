@@ -15,7 +15,9 @@ export const setCurPoll = poll =>({
 export const getPolls = () =>{
     return async dispatch =>{
         try {
-            const polls = await dispatch(api.call('get','polls'))
+            const polls = await api.call('get','polls')
+            // console.log(polls);
+            
             dispatch(setPolls(polls))
             dispatch(removeError())
         } catch (err) {
@@ -28,7 +30,8 @@ export const getPolls = () =>{
 export const getUserPolls = () =>{
     return async dispatch =>{
         try {
-            const polls = await dispatch(api.call('get','polls/user'))
+            const polls = await api.call('get','polls/user')
+            
             dispatch(setPolls(polls))
             dispatch(removeError())
         } catch (err) {
@@ -70,7 +73,7 @@ export const vote = (id,data) =>{
             const poll = await dispatch(api.call('post',`polls/${id}`,data))
             dispatch(setCurPoll(poll))
             dispatch(removeError())
-        } catch (error) {
+        } catch (err) {
             const {error} = err.response.data
             dispatch(addError(error))
         }

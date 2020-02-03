@@ -1,8 +1,8 @@
 import {SET_CUR__POLL,SET_POLLS} from '../actionTypes'
 
 const initialState ={
-    polls=[],
-    poll=null
+    polls:[],
+    poll:null
 }
 
 export default (state=initialState,action)=>{
@@ -10,7 +10,7 @@ export default (state=initialState,action)=>{
         case SET_POLLS:
             return{
                 ...state,
-                polls:polls.concat(action.polls)
+                polls:action.polls
             }
         case SET_CUR__POLL:
             return{

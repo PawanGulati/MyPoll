@@ -44,11 +44,12 @@ exports.userPolls = async(req,res,next)=>{
     try{
         const {_id} = req.user
         const user = await db.User.findById(_id).populate('polls')
+        
         if(user.polls.length === 0){
             throw new Error('No Polls created')
         }
 
-        res.status(200).json(polls)
+        res.status(200).json(user.polls)
         next()
     }catch(err){
         next({ status: 400, message: err.message })
