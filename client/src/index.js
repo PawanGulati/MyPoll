@@ -4,17 +4,36 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import {MuiThemeProvider,createMuiTheme} from '@material-ui/core'
+import { red, amber } from '@material-ui/core/colors';
+
 //implement REDUX 
 import {Provider} from 'react-redux'
 import store from './store'
 
 import {BrowserRouter} from 'react-router-dom'
 
+const theme = createMuiTheme({
+    palette:{
+        primary:red,
+        secondary:{
+            main:amber.A400,
+            light:amber[200],
+            dark:amber[700]
+        },
+        type:'dark'
+    }
+})
+console.log(theme);
+
 const app = (<BrowserRouter>
                 <Provider store={store}>
-                    <App />
+                    <MuiThemeProvider theme={theme}>
+                        <App />
+                    </MuiThemeProvider>
                 </Provider>
-            </BrowserRouter> )
+            </BrowserRouter> 
+            )
 
 ReactDOM.render(app, document.getElementById('root'));
 
