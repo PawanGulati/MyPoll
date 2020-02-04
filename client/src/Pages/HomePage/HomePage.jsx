@@ -34,10 +34,10 @@ export default connect(mapStateToProps,mapDispatchToProps)(class extends Compone
 
     render() {
         return (
-            <div className={classes.root} style={{height:'100%'}}>
+            <div className={classes.root} style={{height:'calc(100%-56px)'}}>
                 <Grid container spacing={3} style={{height:'100%'}}>
                     <Grid item xs={12} sm={6} style={{height:'100%'}}>
-                        <Paper className={classes.paper} style={{height:'70%',paddingTop:'5%',overflowY:'auto'}}>
+                        <Paper className={classes.paper} style={{height:500,paddingTop:'5%',overflowY:'auto'}}>
                         {this.props.isAuth && (
                             <div style={{display:'flex',justifyContent:'space-around',}}>
                               <Button variant="contained" color="secondary" onClick={this.showUserPolls}>SHOW MY POLLS</Button>
@@ -48,7 +48,7 @@ export default connect(mapStateToProps,mapDispatchToProps)(class extends Compone
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} style={{height:'100%'}}>
-                        <Paper className={classes.paper} style={{height:'70%',paddingTop:'5%'}} >
+                        <Paper className={classes.paper} style={{height:500,paddingTop:'5%'}} >
                             <Welcome/> 
                         </Paper>
                     </Grid>

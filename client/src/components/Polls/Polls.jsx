@@ -17,7 +17,8 @@ const useStyles = makeStyles(theme => ({
     marginTop:'30px',
     marginBottom:'10px',
     width:'100%',
-    fontWeight:'bold'
+    fontWeight:'bold',
+    color:'secondary'
   }
 }));
 
@@ -31,7 +32,7 @@ export default props =>{
 
   const polls = props.polls.map(poll =>(
     <Fragment key={poll._id}>
-      <FormLabel component="legend" key={poll._id} className={classes.formLabel}>{poll.question}</FormLabel>
+      <Typography component="legend" key={poll._id} className={classes.formLabel} color="secondary">{poll.question}</Typography>
       <RadioGroup aria-label="gender" name="gender1" key={`options${poll._id}`} wvalue={value} onChange={handleChange} row style={{justifyContent:'space-evenly'}}>
           {poll.options && poll.options.map(option =>(
                   <FormControlLabel

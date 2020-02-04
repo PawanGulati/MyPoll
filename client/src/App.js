@@ -13,6 +13,8 @@ import { setToken } from "./services/api/api";
 import { setCurUser,addError } from "./store/actions";
 import HomePage from "./Pages/HomePage/HomePage";
 
+import {CssBaseline} from '@material-ui/core'
+
 if(localStorage.jwtToken){
   setToken(localStorage.jwtToken)
   try {
@@ -26,6 +28,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
+        <CssBaseline/>
         <Layout>
           <Switch>
             <Route path="/auth" exact render={(props)=><AuthPage {...props}/>}/>   
