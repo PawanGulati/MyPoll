@@ -6,6 +6,8 @@ import Button from '@material-ui/core/Button';
 // import MenuIcon from '@material-ui/icons/Menu';
 
 import Logo from '../../components/Logo/Logo'
+import { Link } from '@material-ui/core';
+import CreatePollPage from '../../Pages/CreatePollPage/CreatePollPage';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,11 +29,11 @@ const useStyles = makeStyles(theme => ({
   toolbar:{
     height:'100%',
     flex:1,
-    justifyContent:'space-between'
+    justifyContent:'space-between',
   }
 }));
 
-export default function ToolBar() {
+export default function ToolBar(props) {
   const classes = useStyles();
 
   return (
@@ -39,8 +41,9 @@ export default function ToolBar() {
       <AppBar position="static" style={{height:'100%'}}>
         <Toolbar className={classes.toolbar}>
           <Logo/>
-          <Button color="inherit">Register</Button>
-          <Button color="inherit">Login</Button>
+          <Link href={props.isAuth?'/auth':'/auth'} underline="none" style={{cursor:'pointer',fontWeight:'bold'}} color="inherit">{props.isAuth?'Create Poll':'Register'}</Link>
+          <Link  href={props.isAuth?null:'/auth'} underline="none" style={{cursor:'pointer',fontWeight:'bold'}} color="inherit">{props.isAuth?'Logout':'Login'}</Link>
+          <CreatePollPage/>
         </Toolbar>
       </AppBar>
     </div>
