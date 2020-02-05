@@ -63,7 +63,7 @@ export default connect(mapStateToProps,mapDispatchToProps)(class extends Compone
 
   render(){
     return (
-      <div className={classes.root} style={{height:'100%'}}>
+      <div className={classes.root} style={{height:'calc(100%-56px)'}}>
 
         {this.props.isAuth?<Redirect to='/'/>:null}
 
