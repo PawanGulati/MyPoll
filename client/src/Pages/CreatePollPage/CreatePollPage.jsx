@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
+import {Redirect} from 'react-router'
 
 import {DialogTitle,DialogContentText,DialogContent,Button,TextField,Dialog,DialogActions,Fab, withStyles} from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
+
+import { createPoll } from '../../store/actions/polls';
 
 const styles = theme =>({
     FormControl: {
@@ -9,13 +13,21 @@ const styles = theme =>({
     }
 })
 
-export default withStyles(styles)(class extends Component{
+const mapStateToProps = state =>({
+
+})
+
+const mapDispatchToProps = dispatch =>({
+    createPoll: (data) =>{dispatch(createPoll(data))}
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles)(class extends Component{
 
     state={
         open:false,
         form:{
             question:'',
-            options:[]
+            options:['']
         }
     }
 
@@ -33,7 +45,7 @@ export default withStyles(styles)(class extends Component{
             open:!prevState.open,
             form:{
                 question:'',
-                options:[]
+                options:['']
             }
         }))
     }
@@ -42,11 +54,55 @@ export default withStyles(styles)(class extends Component{
         //TODO: Validation
 
         const {form} = this.state
+        console.log(form);
+
+        this.props.createPoll(form)
+
+        this.handelToggle()
+    }
+
+    handleAnswer = (e,index) =>{
+        const newForm = {...this.state.form}
+        const newOptions = [...newForm.options]
+        
+        newOptions[index] = e.target.value
+        newForm.options = newOptions
+
+        this.setState({
+            form:newForm
+        })
+    }
+
+    handelAddOption = () =>{
+        const newForm = {...this.state.form}
+        const newOptions = [...newForm.options]
+
+        newOptions.push('')
+        newForm.options = newOptions
+
+        this.setState({
+            form:newForm
+        })
 
     }
 
     render(){
         const {classes} = this.props
+
+        const options = this.state.form.options.map((option,i) =>(
+            <TextField
+                key={i}
+                className={classes.FormControl}
+                margin="dense"
+                label={`Option ${i+1}`}
+                type="text"
+                name="option"
+                fullWidth
+                value={option}
+                onChange={(e)=>this.handleAnswer(e,i)}
+            />
+        ))
+
         return(
             <>
                 <Fab onClick={this.handelToggle} size="small" color='secondary'>
@@ -63,15 +119,19 @@ export default withStyles(styles)(class extends Component{
                                 className={classes.FormControl}
                                 margin="dense"
                                 label="Question"
-                                type="email"
+                                type="text"
                                 name="question"
                                 fullWidth
                                 value={this.state.form.question}
                                 onChange={this.handleChange('question')}
                             />
+                            {options}
                         </form>
                     </DialogContent>
                     <DialogActions>
+                        <Button onClick={this.handelAddOption} color="primary" style={{flex:1,justifyContent:'start'}}>
+                            Add Option
+                        </Button>
                         <Button onClick={this.handelToggle} color="primary">
                             Close
                         </Button>
@@ -83,4 +143,4 @@ export default withStyles(styles)(class extends Component{
             </>
         )
     }
-})
+}))
