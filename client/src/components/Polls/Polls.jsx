@@ -24,19 +24,19 @@ const useStyles = makeStyles(theme => ({
 
 export default props =>{
   const classes = useStyles();
-  const [value, setValue] = React.useState('female');
+  const [value, setValue] = React.useState('');
 
   const handleChange = event => {
     setValue(event.target.value);
   };
 
   const polls = props.polls.map(poll =>(
-    <Fragment key={poll._id}>
+    <div key={poll._id} onClick={()=>props.handlePollSelect(poll._id)} style={{cursor:'pointer'}}>
       <Typography component="legend" key={poll._id} className={classes.formLabel} color="secondary">{poll.question}</Typography>
-      <RadioGroup aria-label="gender" name="gender1" key={`options${poll._id}`} wvalue={value} onChange={handleChange} row style={{justifyContent:'space-evenly'}}>
+      <RadioGroup aria-label="options" name="options" key={`options${poll._id}`} value={value} onChange={handleChange} row style={{justifyContent:'space-evenly'}}>
           {poll.options && poll.options.map(option =>(
                   <FormControlLabel
-                      value="disabled"
+                      value={option.option}
                       disabled
                       control={<Radio />}
                       label={option.option}  
@@ -44,7 +44,7 @@ export default props =>{
                   />
           ))}
       </RadioGroup>
-    </Fragment>
+    </div>
   ))
 
   return (
