@@ -12,6 +12,7 @@ import store from './store'
 import { setToken } from "./services/api/api";
 import { setCurUser,addError } from "./store/actions";
 import HomePage from "./Pages/HomePage/HomePage";
+import PollPage from "./Pages/PollPage/PollPage";
 
 import {CssBaseline} from '@material-ui/core'
 
@@ -32,6 +33,7 @@ export default class App extends Component {
         <Layout>
           <Switch>
             <Route path="/auth" exact render={(props)=><AuthPage {...props}/>}/>   
+            <Route path="/poll/:id" exact render={props => <PollPage {...props} />}/>   
             <Route path="/" exact render={props => <HomePage {...props} />}/>   
             {/* <Route path="/login" exact render={(props)=><AuthPage authType="login" {...props}/>}/>
             <Route path="/register" exact render={(props)=><AuthPage authType="register" {...props}/>}/>*/}

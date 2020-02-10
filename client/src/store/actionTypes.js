@@ -8,4 +8,4 @@ export const SET_CUR_USER = 'SET_CUR_USER'
 
 //Polls ActionTypes
 export const SET_POLLS = 'SET_POLLS';
-export const SET_CUR__POLL = 'SET_CUR_POLL';
+export const SET_CUR_POLL = 'SET_CUR_POLL';

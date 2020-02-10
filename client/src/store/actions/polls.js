@@ -1,4 +1,4 @@
-import {SET_POLLS,SET_CUR__POLL} from '../actionTypes'
+import {SET_POLLS,SET_CUR_POLL} from '../actionTypes'
 import { addError, removeError } from './error'
 import api from '../../services/api/api'
 
@@ -8,7 +8,7 @@ export const setPolls = polls =>({
 })
 
 export const setCurPoll = poll =>({
-    type:SET_CUR__POLL,
+    type:SET_CUR_POLL,
     poll
 })
 
