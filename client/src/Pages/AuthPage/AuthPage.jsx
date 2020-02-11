@@ -63,13 +63,13 @@ export default connect(mapStateToProps,mapDispatchToProps)(class extends Compone
 
   render(){
     return (
-      <div className={classes.root} style={{height:'calc(100%-56px)'}}>
+      <div className={classes.root} style={{height:'calc(100% - 56px - 56px)'}}>
 
         {this.props.isAuth?<Redirect to='/'/>:null}
 
         <Grid container spacing={3} style={{height:'100%'}}>
           <Grid item xs={12} sm={6} style={{height:'100%'}}>
-            <Paper className={classes.paper} style={{height:'70%',paddingTop:'15%'}}>
+            <Paper className={classes.paper} style={{height:'100%'}}>
               <Register 
                 error={this.props.error} 
                 inputChangeHandler={this.inputChangeHandler} 
@@ -77,7 +77,7 @@ export default connect(mapStateToProps,mapDispatchToProps)(class extends Compone
             </Paper>
           </Grid>
           <Grid item xs={12} sm={6} style={{height:'100%'}}>
-            <Paper className={classes.paper} style={{height:'70%',paddingTop:'15%'}} >
+            <Paper className={classes.paper} style={{height:'100%'}} >
               <Login 
                 openErr={this.props.openErr}
                 closeErr={this.props.closeErr}

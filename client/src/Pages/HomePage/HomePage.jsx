@@ -47,29 +47,29 @@ export default connect(mapStateToProps,mapDispatchToProps)(class extends Compone
     render() {
         const error = this.props.error && (
             <Snackbar open={this.props.openErr} autoHideDuration={3000} onClose={this.props.closeErr}>
-              <Alert onClose={this.props.closeErr} severity="error">
+              <Alert onClose={this.props.closeErr} severity="warning">
                 {this.props.error}
               </Alert>
             </Snackbar>
         )
 
         return (
-            <div className={classes.root} style={{height:'calc(100%-56px)'}}>
+            <div className={classes.root} style={{height:'calc(100% - 56px - 56px)',paddingBottom:0}}>
                 {error}
                 <Grid container spacing={3} style={{height:'100%'}}>
                     <Grid item xs={12} sm={6} style={{height:'100%'}}>
-                        <Paper className={classes.paper} style={{height:500,paddingTop:'5%',overflowY:'auto'}}>
-                        {this.props.isAuth && (
+                        <Paper className={classes.paper} style={{height:'100%',overflowY:'auto'}}>
+                        {/*this.props.isAuth && (
                             <div style={{display:'flex',justifyContent:'space-around',}}>
                               <Button variant="contained" color="secondary" onClick={this.showUserPolls}>SHOW MY POLLS</Button>
                               <Button variant="contained" color="primary" href='/'>SHOW ALL POLLS</Button>
                             </div>
-                            )}
+                        )*/}
                             <Polls polls={this.props.polls} handlePollSelect={this.handlePollSelect}/>
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} style={{height:'100%'}}>
-                        <Paper className={classes.paper} style={{height:500,paddingTop:'5%'}} >
+                        <Paper className={classes.paper} style={{height:'100%'}} >
                             <Welcome/> 
                         </Paper>
                     </Grid>
