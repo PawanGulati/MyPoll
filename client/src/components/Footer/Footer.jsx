@@ -26,6 +26,7 @@ const useStyles = makeStyles(theme => ({
       flex:1,
       fontSize:'12px',
       paddingTop:'10px',
+      textAlign:'center',
       [theme.breakpoints.down('sm')]:{
         visibility:'hidden'
       } 

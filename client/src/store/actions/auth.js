@@ -38,7 +38,7 @@ export const authUser = (path,data) =>{
 export const logout = () =>{
     return dispatch =>{
         localStorage.clear()
-        dispatch(setToken(null))
+        api.setToken(null)
         dispatch(setCurUser({}))
         dispatch(removeError())
     }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -36,14 +36,24 @@ const useStyles = makeStyles(theme => ({
 export default function ToolBar(props) {
   const classes = useStyles();
 
+  const links = props.isAuth ? (
+      <Fragment>
+        <Link to='/' underline="none" style={{cursor:'pointer',fontWeight:'bold'}} color="inherit" onClick={props.logout}>LogOut</Link>
+        <CreatePollPage/>
+      </Fragment>
+    ):(
+      <Fragment>
+        <Link href='/auth' underline="none" style={{cursor:'pointer',fontWeight:'bold'}} color="inherit">Register</Link>
+        <Link href='/auth' underline="none" style={{cursor:'pointer',fontWeight:'bold'}} color="inherit">Login</Link>
+      </Fragment>
+    ) 
+
   return (
     <div className={classes.root}>
       <AppBar position="static" style={{height:'100%'}}>
         <Toolbar className={classes.toolbar}>
           <Logo/>
-          <Link href={props.isAuth?'/auth':'/auth'} underline="none" style={{cursor:'pointer',fontWeight:'bold'}} color="inherit">{props.isAuth?'Create Poll':'Register'}</Link>
-          <Link  href={props.isAuth?null:'/auth'} underline="none" style={{cursor:'pointer',fontWeight:'bold'}} color="inherit">{props.isAuth?'Logout':'Login'}</Link>
-          <CreatePollPage/>
+          {links}  
         </Toolbar>
       </AppBar>
     </div>

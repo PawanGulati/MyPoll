@@ -25,7 +25,7 @@ export default function Register(props) {
 
   const error = props.error && (
     <Snackbar open={props.openErr} autoHideDuration={3000} onClose={props.closeErr}>
-      <Alert onClose={props.closeErr} severity="error">
+      <Alert onClose={props.closeErr} severity="warning">
         {props.error}
       </Alert>
     </Snackbar>
