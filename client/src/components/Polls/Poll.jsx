@@ -15,23 +15,32 @@ const useStyles = makeStyles(theme => ({
     }
   }));  
 
-export default ({poll}) =>{
+export default ({poll,vote}) =>{
         
     const classes = useStyles()
     const [value, setValue] = React.useState('');
+    const [voted, setVoted] = React.useState(false);
     
     const handleChange = event => {
         setValue(event.target.value);
     };
 
+    const handleVote = opt =>{
+      const {_id} = poll
+      vote(_id,{answer:opt})
+      setVoted(true)
+      // console.log(voted[0]);
+    }
+
     const answer = <RadioGroup aria-label="options" name="options" value={value} onChange={handleChange} row style={{justifyContent:'space-evenly'}}>
                     {poll.options && poll.options.map(option=>(
                         <FormControlLabel
-                            value="disabled"
-                            disabled
+                            value={option.option}
+                            disabled={voted?!!1:!!0}
                             control={<Radio />}
                             label={option.option}  
                             key={option._id}
+                            onClick={()=>handleVote(option.option)}
                         />
                     ))}
                 </RadioGroup>

@@ -8,7 +8,8 @@ import { Grid, Paper, Button, Snackbar, CircularProgress } from '@material-ui/co
 import MuiAlert from '@material-ui/lab/Alert';
 
 import Poll from '../../components/Polls/Poll'
-import { getPoll, closeErr } from '../../store/actions'
+import { getPoll, closeErr, vote } from '../../store/actions'
+import Chart from '../../components/Chart/Chart'
 
 const mapStateToProps = state =>({
     poll: state.polls.poll,
@@ -18,7 +19,8 @@ const mapStateToProps = state =>({
 
 const mapDispatchToProps = dispatch =>({
     getPoll:(id) =>dispatch(getPoll(id)),
-    closeErr:() =>dispatch(closeErr())
+    closeErr:() =>dispatch(closeErr()),
+    vote:(id,data) =>dispatch(vote(id,data))
 })
 
 function Alert(props) {
@@ -35,24 +37,24 @@ export default connect(mapStateToProps,mapDispatchToProps)(class extends Compone
     render() {
         const error = this.props.error && (
             <Snackbar open={this.props.openErr} autoHideDuration={3000} onClose={this.props.closeErr}>
-              <Alert onClose={this.props.closeErr} severity="error">
+              <Alert onClose={this.props.closeErr} severity="warning">
                 {this.props.error}
               </Alert>
             </Snackbar>
         )
         
         return (
-             <div className={classes.root} style={{height:'calc(100%-56px)'}}>
+             <div className={classes.root} style={{height:'calc(100% - 56px - 56px)'}}>
                 {error}
                 <Grid container spacing={3} style={{height:'100%'}}>
                     <Grid item xs={12} sm={6} style={{height:'100%'}}>
-                        <Paper className={classes.paper} style={{height:500,paddingTop:'5%',overflowY:'auto'}}>
-                            {this.props.poll?<Poll poll={this.props.poll}/>:<h1>Loading....</h1>}
+                        <Paper className={classes.paper} style={{height:'100%',overflowY:'auto'}}>
+                            {this.props.poll?<Poll poll={this.props.poll} vote={this.props.vote}/>:<h1>Loading....</h1>}
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} style={{height:'100%'}}>
-                        <Paper className={classes.paper} style={{height:500,paddingTop:'5%'}} >
-                            <Welcome/> 
+                        <Paper className={classes.paper} style={{height:'100%'}} >
+                        {this.props.poll?<Chart poll={this.props.poll}/>:<h1>Loading....</h1>} 
                         </Paper>
                     </Grid>
                 </Grid>
