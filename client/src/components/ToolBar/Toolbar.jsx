@@ -2,10 +2,12 @@ import React, { Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 // import MenuIcon from '@material-ui/icons/Menu';
 
 import Logo from '../../components/Logo/Logo'
-import { Link } from '@material-ui/core';
+import { Link, Typography } from '@material-ui/core';
 import CreatePollPage from '../../Pages/CreatePollPage/CreatePollPage';
 
 const useStyles = makeStyles(theme => ({
@@ -29,6 +31,11 @@ const useStyles = makeStyles(theme => ({
     height:'100%',
     flex:1,
     justifyContent:'space-between',
+  },
+  link:{
+    cursor:'pointer',
+    fontWeight:'bold',
+    display:'flex'
   }
 }));
 
@@ -37,13 +44,22 @@ export default function ToolBar(props) {
 
   const links = props.isAuth ? (
       <Fragment>
-        <Link to='/' underline="none" style={{cursor:'pointer',fontWeight:'bold'}} color="inherit" onClick={props.logout}>LogOut</Link>
+        <Link to='/' underline="none" className={classes.link} color="inherit" onClick={props.logout}>
+          <ExitToAppIcon/>
+          <Typography variant='body1' style={{margin:'2px',fontWeight:500}}>LogOut</Typography>
+        </Link>
         <CreatePollPage/>
       </Fragment>
     ):(
       <Fragment>
-        <Link href='/auth' underline="none" style={{cursor:'pointer',fontWeight:'bold'}} color="inherit">Register</Link>
-        <Link href='/auth' underline="none" style={{cursor:'pointer',fontWeight:'bold'}} color="inherit">Login</Link>
+        <Link href='/auth' underline="none" className={classes.link} color="inherit">
+          <PersonAddIcon/>
+          <Typography variant='body1' style={{margin:'2px',fontWeight:500}}>Register</Typography>
+        </Link>
+        <Link href='/auth' underline="none" className={classes.link} color="inherit">
+          <ExitToAppIcon/>
+          <Typography variant='body1' style={{margin:'2px',fontWeight:500}}>Login</Typography>
+        </Link>
       </Fragment>
     ) 
 

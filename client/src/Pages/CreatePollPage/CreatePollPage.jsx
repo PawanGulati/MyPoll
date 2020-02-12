@@ -128,13 +128,13 @@ export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles)(cl
                         </form>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.handelAddOption} color="primary" style={{flex:1,justifyContent:'start'}}>
+                        <Button onClick={this.handelAddOption} color="secondary" style={{flex:1,justifyContent:'start',fontWeight:500}}>
                             Add Option
                         </Button>
-                        <Button onClick={this.handelToggle} color="primary">
+                        <Button onClick={this.handelToggle} color="primary" style={{fontWeight:500}}>
                             Close
                         </Button>
-                        <Button onClick={this.handleCreatePoll} color="primary">
+                        <Button onClick={this.handleCreatePoll} color="secondary" style={{fontWeight:500}}>
                             Create
                         </Button>
                     </DialogActions>
