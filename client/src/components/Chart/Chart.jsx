@@ -18,11 +18,26 @@ export default props =>{
         labels: props.poll.options.map(option =>{
             return option.option
         })
-    } : null
+    } : {}
+
+    const options = {
+        maintainAspectRatio: false	// Don't maintain w/h ratio
+    }
+
+    const legend = {
+        labels:{
+            fontSize:20,
+            fontColor:'#FFC400',
+            boxWidth:60,
+            // padding:20
+        }
+    } 
     
     return <>
         <Doughnut
             data={data}
+            options={options}
+            legend={legend}
         />
     </>
 }
