@@ -4,8 +4,9 @@ import {connect} from 'react-redux'
 import Welcome from '../../components/Welcome'
 import classes from './pollPage.module.css'
 
-import { Grid, Paper, Button, Snackbar, CircularProgress } from '@material-ui/core'
+import { Grid, Paper, Button, Snackbar, CircularProgress, Fab } from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import Poll from '../../components/Polls/Poll'
 import { getPoll, closeErr, vote } from '../../store/actions'
@@ -49,6 +50,9 @@ export default connect(mapStateToProps,mapDispatchToProps)(class extends Compone
                 <Grid container spacing={3} style={{height:'100%'}}>
                     <Grid item xs={12} sm={6} style={{height:'100%'}}>
                         <Paper className={classes.paper} style={{height:'100%',overflowY:'auto'}}>
+                            <Fab color="secondary" aria-label="back" style={{left:'2em',zIndex:100,position:'fixed'}} onClick={this.props.history.goBack}>
+                                <ArrowBackIcon/>
+                            </Fab>
                             {this.props.poll?<Poll poll={this.props.poll} vote={this.props.vote}/>:<h1>Loading....</h1>}
                         </Paper>
                     </Grid>

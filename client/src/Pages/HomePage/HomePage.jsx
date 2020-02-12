@@ -70,7 +70,7 @@ export default connect(mapStateToProps,mapDispatchToProps)(class extends Compone
                     </Grid>
                     <Grid item xs={12} sm={6} style={{height:'100%'}}>
                         <Paper className={classes.paper} style={{height:'100%'}} >
-                            <Welcome/> 
+                            <Welcome {...this.props} isAuth={this.props.isAuth}/> 
                         </Paper>
                     </Grid>
                 </Grid>

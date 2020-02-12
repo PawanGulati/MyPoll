@@ -72,8 +72,8 @@ export default props =>{
                     <Tab label="SHOW MY POLLS" style={{flex:1}} onClick={handleGetUserPolls}/>
                     </Tabs>}
                     <Typography className={classes.copyRight}>
-                      Copyright © 2019 Pawan India, Inc. All rights reserved. Terms of Use | Privacy Policy
-                      +91 PAWAN (+91 894 935 3438)
+                      Copyright © 2020 MyPolls India, Inc. All rights reserved. Terms of Use | Privacy Policy
+                      +91 MY_POLLS (+91 894 935 3438)
                     </Typography>
             </AppBar>
         </div>
