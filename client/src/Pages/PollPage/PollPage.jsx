@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 
 import {connect} from 'react-redux'
-import Welcome from '../../components/Welcome'
 import classes from './pollPage.module.css'
 
-import { Grid, Paper, Button, Snackbar, CircularProgress, Fab } from '@material-ui/core'
+import { Grid, Paper,Snackbar, Fab } from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import Poll from '../../components/Polls/Poll'
-import { getPoll, closeErr, vote } from '../../store/actions'
 import Chart from '../../components/Chart/Chart'
+import { getPoll, closeErr, vote } from '../../store/actions'
 
 const mapStateToProps = state =>({
     poll: state.polls.poll,

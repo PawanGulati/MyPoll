@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import {connect} from 'react-redux'
 
-import { Grid, Paper, Button, Snackbar } from '@material-ui/core'
+import { Grid, Paper,Snackbar } from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert';
 
 import classes from './HomePage.module.css'
@@ -59,12 +59,6 @@ export default connect(mapStateToProps,mapDispatchToProps)(class extends Compone
                 <Grid container spacing={3} style={{height:'100%'}}>
                     <Grid item xs={12} sm={6} style={{height:'100%'}}>
                         <Paper className={classes.paper} style={{height:'100%',overflowY:'auto'}}>
-                        {/*this.props.isAuth && (
-                            <div style={{display:'flex',justifyContent:'space-around',}}>
-                              <Button variant="contained" color="secondary" onClick={this.showUserPolls}>SHOW MY POLLS</Button>
-                              <Button variant="contained" color="primary" href='/'>SHOW ALL POLLS</Button>
-                            </div>
-                        )*/}
                             <Polls polls={this.props.polls} handlePollSelect={this.handlePollSelect}/>
                         </Paper>
                     </Grid>

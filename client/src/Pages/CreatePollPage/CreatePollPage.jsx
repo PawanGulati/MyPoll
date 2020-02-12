@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Redirect} from 'react-router'
 
 import {DialogTitle,DialogContentText,DialogContent,Button,TextField,Dialog,DialogActions,Fab, withStyles} from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';

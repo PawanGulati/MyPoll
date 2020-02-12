@@ -53,7 +53,7 @@ export default props =>{
 
         return(
             <div>
-                <img src={myLogo}/>
+                <img src={myLogo} alt='LOGO'/>
                 <Typography className={classes.logo}><span className={classes.span}>M</span>Y POLL<span className={classes.span}>S</span></Typography>    
                 {auth}
                 <Typography variant='h6'>Select respective POLL to contribute your vote</Typography>

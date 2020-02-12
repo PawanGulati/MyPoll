@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import ToolBar from '../../components/ToolBar/Toolbar'
 import Footer from '../../components/Footer/Footer'
 import { getPolls, getUserPolls, logout } from '../../store/actions'
-import { ThemeProvider } from '@material-ui/core'
 
 const mapStateToProps = state =>({
     isAuth:state.auth.isAuth
