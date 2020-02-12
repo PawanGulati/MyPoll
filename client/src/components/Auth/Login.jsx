@@ -44,7 +44,7 @@ export default props => {
         <Divider style={{margin:"12px"}} />
         <form className={classes.root} noValidate autoComplete="off">
             <Input name="userName" onChange={props.inputChangeHandler} placeholder="UserName" fullWidth inputProps={{ 'aria-label': 'description' }} style={{marginBottom:'26px'}}/>
-            <Input name="password" onChange={props.inputChangeHandler} placeholder="Password" fullWidth inputProps={{ 'aria-label': 'description' }} style={{marginBottom:'26px'}}/>
+            <Input name="password" type='password' onChange={props.inputChangeHandler} placeholder="Password" fullWidth inputProps={{ 'aria-label': 'description' }} style={{marginBottom:'26px'}}/>
             <Button onClick={(e)=>props.submitHandler(e)} fullWidth variant="contained" color="primary" className={classes.button} startIcon={<ExitToAppIcon/>}>
                 Login
             </Button>
