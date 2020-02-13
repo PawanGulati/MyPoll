@@ -71,7 +71,7 @@ export default function Register(props) {
               }
             />
             <Input 
-              name="conformPassword" 
+              name="cnfrmPassword" 
               type='password' 
               onChange={props.inputChangeHandler} 
               placeholder="Conform Password" 
