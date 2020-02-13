@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-const control = require('../server/controller')
+const control = require('../controller')
 const auth = require('../middleware/auth')
 
 // showPolls n createPolls '/api/polls/'
