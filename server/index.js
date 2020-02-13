@@ -3,6 +3,7 @@ require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const path = require('path')
 
 const control = require('./controller')
 const db = require('./models')
@@ -22,10 +23,18 @@ app.use(bodyParser.json())
 app.use('/api/auth', routes.auth)
 app.use('/api/polls', routes.polls)
 
-app.get('/', (req, res, next) => {
-    // next(Error('just a TEST'))
-    res.send('hello')
-})
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('../client/build'))
+
+    app.get('*',(req,res) =>{
+        res.sendFile(path.resolve(__dirname, '..','client','build','index.html'))
+    })
+}
+
+// app.get('/', (req, res, next) => {
+//     // next(Error('just a TEST'))
+//     res.send('hello')
+// })
 
 const port = process.env.PORT || 4000
 
