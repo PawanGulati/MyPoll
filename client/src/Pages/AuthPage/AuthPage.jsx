@@ -10,7 +10,7 @@ import Login from '../../components/Auth/Login'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router'
 import {authUser,logout} from '../../store/actions/auth'
-import { closeErr, addError } from '../../store/actions/error';
+import { closeErr, addError,removeError } from '../../store/actions/error';
 
 
 const mapStateToProps = state =>({
@@ -23,7 +23,8 @@ const mapDispatchToProps = dispatch =>({
   authUser:(path,data) => dispatch(authUser(path,data)),
   logout:() => dispatch(logout()),
   closeErr:() =>dispatch(closeErr()),
-  addError:(err) =>dispatch(addError(err))
+  addError:(err) =>dispatch(addError(err)),
+  removeError:() =>{dispatch(removeError())}
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(class extends Component {
@@ -43,14 +44,14 @@ export default connect(mapStateToProps,mapDispatchToProps)(class extends Compone
 
   submitHandlerReg = e =>{
     e.preventDefault()
+    this.props.removeError()
     this.setState({open:true})
     try{
       const {userName,password,conformPassword} = this.state
-
+      
       if(password !== conformPassword) throw Error('Passwords aren\'t matching')
-
+      
       const data = {userName,password}
-
       this.props.authUser('register',data)
 
     }catch(err){
