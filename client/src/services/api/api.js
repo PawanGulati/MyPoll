@@ -3,7 +3,7 @@ import Axios from "axios";
 // Axios calling function
 export const call = async (method, path, data) => {
     
-        const response = await Axios[method](`http://localhost:4000/api/${path}`, data)
+        const response = await Axios[method](`/api/${path}`, data)
         // console.log(response.data);
 
         return response.data
