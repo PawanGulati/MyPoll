@@ -10,10 +10,11 @@ const useStyles = makeStyles(theme => ({
       flex: 1,
       height:'56px',
       width:'100%',
-      bottom:0,
+      // bottom:0,
+      right:0,
       left:0,
-      position:'sticky',
-      zIndex:90,
+      position:'fixed',
+      zIndex:100,
     },
     toolbar:{
       height:'100%',
@@ -27,7 +28,17 @@ const useStyles = makeStyles(theme => ({
       paddingTop:'10px',
       textAlign:'center',
       [theme.breakpoints.down('sm')]:{
-        visibility:'hidden'
+        fontSize:'11px'
+      } 
+    },
+    copyRightAuth:{
+      flex:1,
+      fontSize:'12px',
+      paddingTop:'10px',
+      textAlign:'center',
+      [theme.breakpoints.down('sm')]:{
+        visibility:'hidden',
+        width:0
       } 
     },
     Tabs:{
@@ -70,7 +81,7 @@ export default props =>{
                     <Tab label="SHOW ALL POLLS" style={{flex:1}} onClick={handleGetPolls}/>
                     <Tab label="SHOW MY POLLS" style={{flex:1}} onClick={handleGetUserPolls}/>
                     </Tabs>}
-                    <Typography className={classes.copyRight}>
+                    <Typography className={props.isAuth ? classes.copyRightAuth:classes.copyRight}>
                       Copyright © 2020 MyPolls India, Inc. All rights reserved. Terms of Use | Privacy Policy
                       +91 MY_POLLS (+91 894 935 3438)
                     </Typography>

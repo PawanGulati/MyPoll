@@ -11,20 +11,33 @@ const useStyles = makeStyles( theme =>({
     logo:{
         color:"secondary",
         fontSize:'4rem',
-        fontFamily:'\'Black Ops One\',cursive'
+        fontFamily:'\'Black Ops One\',cursive',
+        [theme.breakpoints.down('md')]:{
+            // fontSize:'.1rem',
+            lineHeight:'180%'
+
+        },
+        [theme.breakpoints.down('sm')]:{
+            fontSize:'2rem'
+        }
     },
     span:{
         fontFamily:'\'Black Ops One\',cursive',
         fontSize:'6rem',
         letterSpacing:'.1rem',
         color:"secondary"
+    },
+    typo:{
+        [theme.breakpoints.down("md")]:{
+            fontSize:'1rem'
+        }
     }
 }));
 
 export default props =>{
         const classes = useStyles();
         const auth = !props.isAuth && (<div>
-                <Typography variant='h6'>GO</Typography>
+                <Typography variant='h6' className={classes.typo}>GO</Typography>
                 <div style={{display:'flex'}}>
                 <Button
                     variant="contained"
@@ -47,7 +60,7 @@ export default props =>{
                     SIGN-IN
                 </Button>
                 </div>
-                <Typography variant='h6'>right now and</Typography><br/>
+                <Typography variant='h6' className={classes.typo}>right now and</Typography><br/>
             </div>
         )
 
