@@ -96,6 +96,7 @@ export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles)(cl
                 label={`Option ${i+1}`}
                 type="text"
                 name="option"
+                style={{width:'100%'}}
                 fullWidth
                 value={option}
                 onChange={(e)=>this.handleAnswer(e,i)}
@@ -120,6 +121,7 @@ export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles)(cl
                                 label="Question"
                                 type="text"
                                 name="question"
+                                style={{width:'100%'}}
                                 fullWidth
                                 value={this.state.form.question}
                                 onChange={this.handleChange('question')}

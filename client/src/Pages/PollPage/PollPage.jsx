@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import classes from './pollPage.module.css'
 
-import { Grid, Paper,Snackbar, Fab } from '@material-ui/core'
+import { Grid, Paper,Snackbar, Fab, withWidth} from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 

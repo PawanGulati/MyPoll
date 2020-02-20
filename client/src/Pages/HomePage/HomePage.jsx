@@ -4,8 +4,9 @@ import {connect} from 'react-redux'
 
 import { Grid, Paper,Snackbar } from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert';
+import {withStyles} from '@material-ui/core'
 
-import classes from './HomePage.module.css'
+// import classes from './HomePage.module.css'
 
 import Polls from '../../components/Polls/Polls'
 import { getPolls, getUserPolls, closeErr, setCurPoll } from '../../store/actions'
@@ -28,7 +29,35 @@ const mapDispatchToProps = dispatch =>({
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
-export default connect(mapStateToProps,mapDispatchToProps)(class extends Component {
+
+const styles = theme =>({
+    root:{
+        flexGrow: 1,
+        padding:theme.spacing(1)
+    },
+    paper:{
+        height:'100%',
+        overflowY:'auto',
+        padding:'16px',
+        // color: 'secondary',
+        textAlign: 'center',
+        [theme.breakpoints.up('sm')]:{
+            marginTop:5
+        }
+
+    },
+    leftPane:{
+      [theme.breakpoints.down('sm')]:{
+        order:2
+      }
+    },
+    rightPane:{
+            [theme.breakpoints.down('sm')]:{
+                order:1,
+            }
+    }
+})
+export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles)(class extends Component {
 
     componentDidMount(){
         const {getPolls} = this.props
@@ -45,6 +74,8 @@ export default connect(mapStateToProps,mapDispatchToProps)(class extends Compone
     }
 
     render() {
+        const {classes} = this.props
+
         const error = this.props.error && (
             <Snackbar open={this.props.openErr} autoHideDuration={3000} onClose={this.props.closeErr}>
               <Alert onClose={this.props.closeErr} severity="warning">
@@ -56,14 +87,14 @@ export default connect(mapStateToProps,mapDispatchToProps)(class extends Compone
         return (
             <div className={classes.root} style={{height:'calc(100% - 56px - 56px)',paddingBottom:0}}>
                 {error}
-                <Grid container spacing={3} style={{height:'100%'}}>
-                    <Grid item xs={12} sm={6} style={{height:'100%'}}>
-                        <Paper className={classes.paper} style={{height:'100%',overflowY:'auto'}}>
+                <Grid container spacing={2} style={{height:'100%'}} >
+                    <Grid item xs={12} sm={6} style={{height:'100%'}} className={classes.leftPane}>
+                        <Paper className={classes.paper}>
                             <Polls polls={this.props.polls} handlePollSelect={this.handlePollSelect}/>
                         </Paper>
                     </Grid>
-                    <Grid item xs={12} sm={6} style={{height:'100%'}}>
-                        <Paper className={classes.paper} style={{height:'100%'}} >
+                    <Grid item xs={12} sm={6} style={{height:'100%'}} className={classes.RightPane}>
+                        <Paper className={classes.paper}>
                             <Welcome {...this.props} isAuth={this.props.isAuth}/> 
                         </Paper>
                     </Grid>
@@ -71,4 +102,4 @@ export default connect(mapStateToProps,mapDispatchToProps)(class extends Compone
             </div>
         )
     }
-})
+}))

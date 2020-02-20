@@ -26,11 +26,12 @@ export default props =>{
 
     const legend = {
         labels:{
-            fontSize:20,
+            fontSize:17,
             fontColor:'#FFC400',
-            boxWidth:60,
+            boxWidth: 80,
             // padding:20
-        }
+        },
+        // display:false
     } 
     
     return <>
