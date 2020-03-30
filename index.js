@@ -4,12 +4,15 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const path = require('path')
+const enforce = require('express-sslify')
 
 const control = require('./controller')
 const db = require('./models')
 const routes = require('./routes')
 
 const app = express()
+
+app.use(enforce.HTTPS({trustProtoHeader:true}))
 
 //cors middleware
 app.use(cors())
