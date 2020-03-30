@@ -19,6 +19,12 @@ app.use(bodyParser.urlencoded({
     extended: false
 }))
 app.use(bodyParser.json())
+
+//defining service worker for PWA implementation 
+app.get('/service-worker.js',(req,res)=>{
+    res.sendFile(path.resolve(__dirname,'..','build','service-worker.js'))
+})
+
 //routes middleware
 app.use('/api/auth', routes.auth)
 app.use('/api/polls', routes.polls)
@@ -33,7 +39,7 @@ if(process.env.NODE_ENV === 'production'){
 
 // app.get('/', (req, res, next) => {
 //     // next(Error('just a TEST'))
-//     res.send('hello')
+//     res.send('! server working test !')
 // })
 
 const port = process.env.PORT || 4000

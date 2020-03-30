@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
       flex: 1,
       height:'56px',
       width:'100%',
-      // bottom:0,
+      bottom:0,
       right:0,
       left:0,
       position:'fixed',

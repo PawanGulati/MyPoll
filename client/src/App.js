@@ -35,7 +35,7 @@ export default class App extends Component {
             <Route path="/auth" exact render={(props)=><AuthPage {...props}/>}/>   
             <Route path="/poll/:id" exact render={props => <PollPage {...props} />}/>   
             <Route path="/" exact render={props => <HomePage {...props} />}/>   
-            <Route path="*" render={()=><><h1>404 BRO!!</h1></>}/>   
+            <Route render={()=><><h1>404 BRO!!</h1></>}/>
             {/* <Route path="/login" exact render={(props)=><AuthPage authType="login" {...props}/>}/>
             <Route path="/register" exact render={(props)=><AuthPage authType="register" {...props}/>}/>*/}
           </Switch>

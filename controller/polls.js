@@ -4,7 +4,7 @@ const db = require('../models')
 exports.showPolls = async(req,res,next)=>{
     try {
         const polls = await db.Poll.find()
-        res.json(polls)
+        res.json(polls).status('200')
         next()
     } catch (err) {
         next({ status: 400, message: err.message })
@@ -119,7 +119,7 @@ exports.DeletePoll = async(req,res,next)=>{
         const{_id:userId} = req.user
         const{id:pollId} = req.params
 
-        if(poll.owner.toString() !== userId) throw new Error('Not Authorized')
+        if(poll.owner.toString() !== userId) throw new Error('Only creator of this poll is Authorized')
 
         const poll = await db.Poll.findByIdAndRemove(pollId)
         if(!poll) throw new Error('Poll not Found')
