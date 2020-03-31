@@ -2,7 +2,8 @@ import {SET_CUR_POLL,SET_POLLS} from '../actionTypes'
 
 const initialState ={
     polls:[],
-    poll:{}
+    poll:{},
+    pollCount:0
 }
 
 export default (state=initialState,action)=>{
@@ -10,7 +11,8 @@ export default (state=initialState,action)=>{
         case SET_POLLS:
             return{
                 ...state,
-                polls:action.polls
+                polls:action.polls,
+                pollCount:action.totalPolls.length
             }
         case SET_CUR_POLL:
             return{

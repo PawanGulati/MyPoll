@@ -3,7 +3,10 @@ const db = require('../models')
 
 exports.showPolls = async(req,res,next)=>{
     try {
-        const polls = await db.Poll.find()
+        const polls = await db.Poll.find({},null,{
+            limit:parseInt(req.query.limit),
+            skip:parseInt(req.query.skip)
+        })
         res.json(polls).status('200')
         next()
     } catch (err) {

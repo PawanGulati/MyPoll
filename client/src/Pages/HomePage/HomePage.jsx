@@ -5,22 +5,26 @@ import {connect} from 'react-redux'
 import { Grid, Paper,Snackbar } from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert';
 import {withStyles} from '@material-ui/core'
+import {Pagination} from '@material-ui/lab';
 
 // import classes from './HomePage.module.css'
 
 import Polls from '../../components/Polls/Polls'
-import { getPolls, getUserPolls, closeErr, setCurPoll } from '../../store/actions'
+import { getPolls, getUserPolls, closeErr, setCurPoll, getPoll } from '../../store/actions'
 import Welcome from '../../components/Welcome'
+
+const NO_OF_QUES_ON_PAGE = 4
 
 const mapStateToProps = state =>({
     polls:state.polls.polls,
+    totalPollCount:state.polls.pollCount,
     isAuth:state.auth.isAuth,
     openErr:state.error.openErr,
     error:state.error.message
 })
 
 const mapDispatchToProps = dispatch =>({
-    getPolls:() =>dispatch(getPolls()),
+    getPolls:(query) =>dispatch(getPolls(query)),
     getUserPolls:() =>dispatch(getUserPolls()),
     closeErr:() =>dispatch(closeErr()),
     setCurPoll:(id) =>dispatch(setCurPoll(id))
@@ -55,13 +59,25 @@ const styles = theme =>({
             [theme.breakpoints.down('sm')]:{
                 order:1,
             }
+    },
+    paginationBar:{
+        marginLeft:'11rem',
+        marginTop:'2rem',
+        [theme.breakpoints.down('sm')]:{
+            marginLeft:'4rem',
+            marginTop:0
+        }
     }
 })
 export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles)(class extends Component {
 
+    state={
+        page:1
+    }
+
     componentDidMount(){
         const {getPolls} = this.props
-        getPolls()
+        getPolls(`?limit=${NO_OF_QUES_ON_PAGE}&skip=0`)
     }
 
     showUserPolls = () =>{
@@ -71,6 +87,14 @@ export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles)(cl
 
     handlePollSelect = id =>{
         this.props.history.push(`poll/${id}`)                
+    }
+
+    handlePagination = (e,value) =>{
+        this.setState({
+            page:value
+        })
+
+        this.props.getPolls(`?limit=${NO_OF_QUES_ON_PAGE}&skip=${(value-1)*4}`)
     }
 
     render() {
@@ -88,9 +112,16 @@ export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles)(cl
             <div className={classes.root} style={{height:'calc(100% - 56px - 56px)',paddingBottom:0}}>
                 {error}
                 <Grid container spacing={2} style={{height:'100%'}} >
-                    <Grid item xs={12} sm={6} style={{height:'100%'}} className={classes.leftPane}>
+                    <Grid item xs={12} sm={6} style={{height:'100%',marginBottom:'56px'}} className={classes.leftPane}>
                         <Paper className={classes.paper}>
-                            <Polls polls={this.props.polls} handlePollSelect={this.handlePollSelect}/>
+                            <Grid container>
+                                <Grid item xs={12}>
+                                    <Polls polls={this.props.polls} handlePollSelect={this.handlePollSelect}/>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Pagination siblingCount={0} boundryCount={0} count={Math.ceil(this.props.totalPollCount/4)} page={this.state.page} onChange={this.handlePagination} className={classes.paginationBar} color="secondary" />
+                                </Grid>    
+                            </Grid>    
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} style={{height:'100%'}} className={classes.RightPane}>
