@@ -119,7 +119,7 @@ export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles)(cl
                                     <Polls polls={this.props.polls} handlePollSelect={this.handlePollSelect}/>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Pagination siblingCount={0} boundryCount={0} count={Math.ceil(this.props.totalPollCount/4)} page={this.state.page} onChange={this.handlePagination} className={classes.paginationBar} color="secondary" />
+                                    <Pagination count={Math.ceil(this.props.totalPollCount/4)} page={this.state.page} onChange={this.handlePagination} className={classes.paginationBar} color="secondary" />
                                 </Grid>    
                             </Grid>    
                         </Paper>

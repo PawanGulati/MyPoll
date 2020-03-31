@@ -55,7 +55,7 @@ export default connect(mapStateToProps,mapDispatchToProps)(class extends Compone
                             {this.props.poll?<Poll poll={this.props.poll} vote={this.props.vote}/>:<h1>Loading....</h1>}
                         </Paper>
                     </Grid>
-                    <Grid item xs={12} sm={6} style={{height:'100%'}}>
+                    <Grid item xs={12} sm={6} style={{height:'100%',marginBottom:'56px'}}>
                         <Paper className={classes.paper} style={{height:'100%'}} >
                         {this.props.poll?<Chart poll={this.props.poll}/>:<h1>Loading....</h1>} 
                         </Paper>

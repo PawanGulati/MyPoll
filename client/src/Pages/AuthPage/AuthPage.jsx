@@ -77,7 +77,7 @@ export default connect(mapStateToProps,mapDispatchToProps)(class extends Compone
         {this.props.isAuth?<Redirect to='/'/>:null}
 
         <Grid container spacing={3} style={{height:'100%'}}>
-          <Grid item xs={12} sm={6} style={{height:'100%',marginTop:'12px'}} >
+          <Grid item xs={12} sm={6} style={{height:'100%'}}>
             <Paper className={classes.paper} style={{height:'100%'}}>
               <Register 
                 error={this.props.error} 
@@ -85,7 +85,7 @@ export default connect(mapStateToProps,mapDispatchToProps)(class extends Compone
                 submitHandler={this.submitHandlerReg}/>
             </Paper>
           </Grid>
-          <Grid item xs={12} sm={6} style={{height:'100%',marginTop:'12px'}} >
+          <Grid item xs={12} sm={6} style={{height:'100%',marginBottom:'56px'}} >
             <Paper className={classes.paper} style={{height:'100%'}} >
               <Login 
                 openErr={this.props.openErr}

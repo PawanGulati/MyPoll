@@ -12,7 +12,7 @@ const routes = require('./routes')
 
 const app = express()
 
-app.use(enforce.HTTPS({trustProtoHeader:true}))
+if(process.env.NODE_ENV === 'production') app.use(enforce.HTTPS({trustProtoHeader:true}))
 
 //cors middleware
 app.use(cors())

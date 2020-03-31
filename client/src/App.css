@@ -45,3 +45,7 @@
 .canvas-container {
   height: 60vh;
 }
+
+*{
+  box-sizing: border-box;
+}

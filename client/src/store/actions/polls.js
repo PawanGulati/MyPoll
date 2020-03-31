@@ -16,8 +16,6 @@ export const setCurPoll = poll =>({
 export const getPolls = (query) =>{
     return async dispatch =>{
         try {
-            console.log(query);
-            
             const polls = await api.call('get',`polls${query}`)
             // console.log(polls);
             const totalPolls = await api.call('get','polls')

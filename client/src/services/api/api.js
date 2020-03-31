@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-Axios.defaults.baseURL = 'http://localhost:8080'
+// Axios.defaults.baseURL = 'http://localhost:8080'
 
 // Axios calling function
 export const call = async (method, path, data) => {
